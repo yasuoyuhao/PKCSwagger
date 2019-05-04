@@ -13,9 +13,9 @@ namespace KTSwagger
     {
         public class KTSwaggerOptionSetting
         {
-            public string Title { get; set; } = "SiRUBA Services API";
-            public string Description { get; set; } = "SiRUBA Services API";
-            public string TermsOfService { get; set; } = "SiRUBA Services API";
+            public string Title { get; set; } = "Services API";
+            public string Description { get; set; } = "Services API";
+            public string TermsOfService { get; set; } = "Services API";
             public Contact Contact { get; set; }
         }
 
