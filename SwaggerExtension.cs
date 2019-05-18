@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.DependencyInjection;
 using NSwag;
 using NSwag.SwaggerGeneration.Processors.Security;
+using System.Linq;
 
 namespace KTSwagger
 {
@@ -61,14 +62,14 @@ namespace KTSwagger
                         }
                     };
 
-                    document.DocumentProcessors.Add(
-                        new SecurityDefinitionAppender("JWT Token", new SwaggerSecurityScheme
-                        {
-                            Type = SwaggerSecuritySchemeType.ApiKey,
-                            Name = "Authorization",
-                            In = SwaggerSecurityApiKeyLocation.Header,
-                            Description = "Copy 'Bearer ' + valid JWT token into field"
-                        }));
+                    document.AddSecurity("JWT Token", Enumerable.Empty<string>(), new SwaggerSecurityScheme
+                    {
+                        Type = SwaggerSecuritySchemeType.ApiKey,
+                        Name = "Authorization",
+                        In = SwaggerSecurityApiKeyLocation.Header,
+                        Description = "Copy 'Bearer ' + valid JWT token into field"
+                    });
+
                     document.OperationProcessors.Add(new OperationSecurityScopeProcessor("JWT Token"));
                 });
             }
